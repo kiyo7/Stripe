@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stripe</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="lib/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css"
+    />
+    <!-- ダウンロードしてきたBootstrap -->
+  </head>
+  <body>
+    <div class="container-sm">
+      <div class="payment-form-container">
+        <h1>クレジットカード情報の入力</h1>
+        <div class="form-group">
+          <p>商品点数 : 3点</p>
+          <p>お支払い : ¥5,500</p>
+        </div>
+        <div id="card-element"><!-- input要素がここに生成される --></div>
+        <div id="card-errors" role="alert">
+          <!-- エラーメッセージがここに表示される -->
+        </div>
+        <button
+          id="payment-form-submit"
+          class="btn btn-outline-info shadow-sm mb-5 rounded btn-lg btn-block"
+        >
+          注文を確定する
+        </button>
+      </div>
+    </div>
+    <!-- scriptを読み込む順番には気をつける!! -->
+    <script src="lib/jquery-3.5.1.min.js"></script>
+    <!-- ダウンロードしてきたjQuery -->
+    <script src="lib/bootstrap-5.0.0-beta1-dist/js/bootstrap.min.js"></script>
+    <!-- ダウンロードしてきたBootstrap -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Stripe.jsx -->
+    <script type="text/javascript" src="public/js/payment.js"></script>
+    <!-- 決済関連の処理を記載する -->
+  </body>
+</html>
