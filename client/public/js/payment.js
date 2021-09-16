@@ -1,6 +1,9 @@
-var stripe = Stripe('pk_test_xxx');
+var stripe = Stripe(
+  'pk_test_51JZUrIAlWSnY14tNfFt8Iez9qDxkcTvwlBep3FjbnveC64s7YuNCovx7YLDYarhKyVSc47a2xKrvLBeVmkRLeLUV00if5lajWq'
+); // キーがないとインスタンスを生成できない、後工程で作成する
 var elements = stripe.elements();
 
+// 注文情報
 const order = {
   items: [
     {
@@ -24,12 +27,12 @@ const style = {
   },
 };
 
-var card = elements.create('card', { style: style, iconStyle: 'solid' });
-
+var card = elements.create('card', { style: style });
 card.mount('#card-element');
 
 card.on('change', ({ error }) => {
   const displayError = document.getElementById('card-errors');
+  // エラーがあればcard-errorsのdivにエラーメッセージを生成
   if (error) {
     displayError.textContent = error.message;
   } else {
@@ -57,9 +60,7 @@ submitButton.addEventListener('click', (e) => {
           .then((result) => {
             return result.json();
           })
-          .then((res) => {
-            onComplete(res);
-          });
+          .then((res) => onComplete(res));
       }
     })
     .catch(() => {
@@ -81,10 +82,10 @@ const reset = (e) => {
 
   card.mount('#card-element');
 };
-let returnButtonNormal = document.getElementById('return-button-normal');
-let returnButtonError = document.getElementById('return-button-error');
-let returnButtonNotYet = document.getElementById('return-button-not-yet');
-let returnButtonDefault = document.getElementById('return-button-default');
+const returnButtonNormal = document.getElementById('return-button-normal');
+const returnButtonError = document.getElementById('return-button-error');
+const returnButtonNotYet = document.getElementById('return-button-not-yet');
+const returnButtonDefault = document.getElementById('return-button-default');
 
 returnButtonNormal.addEventListener('click', reset);
 returnButtonError.addEventListener('click', reset);
